@@ -1,0 +1,171 @@
+# =====================================================
+# STUDENT PERFORMANCE ANALYSIS USING R
+# =====================================================
+
+library(readxl)
+
+# Import Dataset from Excel
+
+student <- read_excel("D:/R programming/studentDatabase.csv.xlsx")
+
+# Display and Explore the Dataset
+
+print(student)
+str(student)
+summary(student)
+
+# Statistical Analysis
+
+mean(student$Marks)
+
+max(student$Marks)
+
+min(student$Marks)
+
+mean(student$Study_Hours)
+
+median(student$Marks)
+
+sd(student$Marks)
+
+# Correlation Analysis
+
+cor(student$Study_Hours, student$Marks)
+
+cor(student$Marks, student$Study_Hours)
+
+# Frequency Analysis
+
+table(student$Department)
+
+table(student$Attendance > 75)
+
+# Data Filtering
+
+student[student$Marks==max(student$Marks), ]
+
+student[student$Marks>60, ]
+
+student[student$Study_Hours>5, ]
+
+# Data Sorting
+
+student[order(-student$Marks), ]
+
+student[order(-student$Study_Hours),]
+
+# Dataset Information
+
+nrow(student)
+
+ncol(student)
+
+# DATA VISUALIZATION
+#----------------------
+# Bar Chart - Student Marks
+
+barplot(student$Marks,
+        names.arg = student$Name,
+        col = "lightgreen",
+        main = "Student Marks Analysis",
+        xlab = "Students",
+        ylab = "Marks")
+
+# Histogram - Marks Distribution
+
+hist(student$Marks,
+     col = "skyblue",
+     main = "Distribution of Student Marks",
+     xlab = "Marks")
+
+# Scatter Plot - Study Hours vs Marks
+
+plot(student$Study_Hours,
+     student$Marks,
+     col = "red",
+     pch = 20,
+     main = "Study Hours vs Marks",
+     xlab = "Study Hours",
+     ylab = "Marks")
+
+# Pie Chart - Marks Distribution
+
+pie(student$Marks,
+    labels = student$Name,
+    main = "Marks Distribution")
+
+# Box plot - Marks Distribution
+
+boxplot(student$Marks,
+        col = "orange",
+        main = "Box Plot of Marks",
+        ylab = "Marks")
+
+# Pie Chart - Department Distribution
+
+Department <- table(student$Department)
+pie(Department,
+    main = "Department-wise Student Distribution",
+    col = rainbow(length(Department)))
+
+# Line Graph - Marks Trend
+
+plot(student$Marks,
+     type = "o",
+     col = "blue",
+     main = "Marks Trend",
+     xlab = "Student Number",
+     ylab = "Marks")
+
+# Bar Chart - Attendance
+
+barplot(student$Attendance,
+        names.arg = student$Name,
+        col = "gold",
+        main = "Student Attendance",
+        xlab = "Students",
+        ylab = "Attendance (%)")
+
+# Line + Points Graph - Marks Trend
+
+plot(student$Marks,
+     type = "b",
+     main = "Marks Trend",
+     xlab = "Student Number",
+     ylab = "Marks",
+     col = "darkgreen")
+
+# Scatter plot - Attendance Distribution
+
+plot(student$Attendance,
+     student$Marks,
+     main = "Attendance vs Marks",
+     xlab = "Attendance (%)",
+     ylab = "Marks",
+     pch = 19,
+     col = "purple")
+
+# Histogram - Attendance Distribution
+
+hist(student$Attendance,
+     main = "Attendance Distribution",
+     xlab = "Attendance",
+     col = "yellow")
+
+Department<-table(student$Department)
+
+# Bar Chart - Number of Students in Each Department
+
+barplot(Department,
+        main = "Students in Each Department",
+        xlab = "Department",
+        ylab = "Number of Students",
+        col = "pink")
+
+# Horizontal Bar Chart - Student Marks
+
+barplot(student$Marks,
+        names.arg = student$Name,
+        horiz = TRUE,
+        main = "Student Marks",
+        col = "cyan")
